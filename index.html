@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="clozehorse.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="css/clozehorse.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="css/clozehorseprint.css" type="text/css" media="print" title="Cloze" charset="utf-8">
+	<title>Cloze Horse</title>
+</head>
+<body>
+<div id="screenonly"><div id="header">
+<img src="images/clozehorselogo.png" alt"Clozehorse">	
+</div><h2 class="control"><a href="javascript://" onclick='toggleDisplay("myinput","inputplusminus");'>1. Type/paste your text in the text area and click the button to process <img id="inputplusminus" src="images/minus.png" width="19" height="19" alt="Minus" class="control"></a></h2>
+<div id="myinput">
+	<form name="textinput" id="textinput">
+		<p><textarea rows="4" cols="80" id="textin"></textarea><p>
+		<p><input id="inputbutton" type="button" value="Process text" onClick="processText();toggleDisplay('myinput','inputplusminus')"></p>
+	</form>
+</div>
+<h2 class="control"><a href="javascript://" onclick='toggleDisplay("editabletext","editplusminus");toggle2("legend");'>2. Click a word to select/deselect it <img id="editplusminus" src="images/minus.png" width="19" height="19" alt="Minus" class="control"></a></h2><div id="editabletext">
+</div>
+<p id="legend"><span id="kincaid"></span><br>
+<span id="gsl1">MM</span> Words from the first thousand words of the General Service List plus other high frequency words.
+<span id="gsl2">MM</span> Words in the second thousand words of the General Service List.
+	<span id="awl">MM</span> Words in the Academic Word List.
+	<span id="low">MM</span> Low frequency words. 
+</p>
+<h2 class="control"><a href="javascript://" onclick='toggleDisplay("clozes","clozesplusminus");'>3. View your cloze and print/download <img id="clozesplusminus" src="images/minus.png" width="19" height="19" alt="Minus" class="control"></a></h2>
+</div>
+<div id="clozes">
+<div id="mycontrols"><fieldset id="formatcontrols"><legend>Printing/Formatting</legend><label>Type to add a title</label><form id="titleTextBox"><input type="text" id="theTitle" onKeyup="writeTitle();"></form><button href="#"id="photov" onclick="printIt(document.getElementById('printme').innerHTML);">Print cloze</button></fieldset><fieldset id="downloadcontrols"> <legend>Downloading</legend><label>Choose file format</label><form id="downloadselect"><select name="selectformat" id="selectformat" onchange="" size="1">
+	<option value="rtf">RTF</option>
+	<option value="hp">Hot Potato</option>
+	<option value="moodle">Moodle (embedded)</option>
+</select></form><button id="selectbutton" onClick="mySelector();">Download</button></fieldset></div>
+<form name="download" action="download.php" method="post" accept-charset="utf-8" onSubmit="fileDownload();">
+<input type="hidden" name="downloadContents">
+</form>
+<form name="downloadRTF" action="downloadasRTF.php" method="post" accept-charset="utf-8" onSubmit="downloadrtf();">
+	<input type="hidden" name="rtftitle">
+	<input type="hidden" name="rtfdetails">
+	<input type="hidden" name="rtfclozelist">
+	<input type="hidden" name="rtfcloze">
+</form>
+<form name="downloadGift" action="downloadgift.php" method="post" accept-charset="utf-8" onSubmit="downloadAsGift();">
+<input type="hidden" name="downloadGiftContents">
+</form>
+<form name="downloadHP" action="downloadhotpotato.php" method="post" accept-charset="utf-8" onSubmit="downloadAsHP();">
+<input type="hidden" name="hpcloze">
+<input type="hidden" name="hptitle">
+</form>
+<div id="printme">
+<h1 id="clozeTitle"></h1>
+<p id="instructions">Fill in the blanks in the text with a word from the box below.</p>
+<div id="clozeList"></div>
+<div id="cloze">
+</div>
+</div>
+</div>
+<div id="footer">
+<p>Clozehorse &copy; Simon Cole 2008</p>
+</div>
+</body>
+</html>
